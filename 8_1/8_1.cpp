@@ -3,6 +3,11 @@
 
 class bad_length : public std::exception
 {
+public:
+    const char* what() const noexcept override
+    {
+        return "Вы ввели слово запретной длины! До свидания";
+    }
 };
 
 int function(std::string str, int forbidden_length)
@@ -29,11 +34,12 @@ int main()
             std::string input{};
             std::cout << "Введите слово: ";
             std::cin >> input;
-            std::cout << "Длина слова \"" << input << "\" равна " << function(input, forbidden_length) << std::endl;
+            int len = function(input, forbidden_length);
+            std::cout << "Длина слова \"" << input << "\" равна " << len << std::endl;
         }
-        catch (bad_length)
+        catch (const bad_length& error)
         {
-            std::cout << "Вы ввели слово запретной длины! До свидания" << std::endl;
+            std::cout << error.what() << std::endl;
             return 1;
         }
     }
