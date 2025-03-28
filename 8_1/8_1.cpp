@@ -34,8 +34,7 @@ int main()
             std::string input{};
             std::cout << "¬ведите слово: ";
             std::cin >> input;
-            int len = function(input, forbidden_length);
-            std::cout << "ƒлина слова \"" << input << "\" равна " << len << std::endl;
+            std::cout << "ƒлина слова \"" << input << "\" равна " << function(input, forbidden_length) << std::endl;
         }
         catch (const bad_length& error)
         {
